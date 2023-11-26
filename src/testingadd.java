@@ -10,6 +10,7 @@ public class testingadd {
 		
 		if(a>b) {
 			System.out.println(a);
+			System.out.println(a);
 		} else {
 			System.out.println(b);
 			System.out.println(a);
