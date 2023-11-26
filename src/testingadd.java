@@ -12,6 +12,7 @@ public class testingadd {
 			System.out.println(a);
 		} else {
 			System.out.println(b);
+			System.out.println(a);
 		}
 
 	}
