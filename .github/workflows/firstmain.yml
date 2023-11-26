@@ -1,19 +1,23 @@
 name: My First GitHub Actions
+
 on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-  steps:
-  - uses: actions/checkout@v4
-  - uses: actions/setup-java@v3
-    with:
-      java-version: '17'
-      distribution: 'temurin'
-  - run: mvn --batch-mode --update-snapshots verify
-  - run: mkdir staging && cp target/*.jar staging
-  - uses: actions/upload-artifact@v3
-    with:
-      name: Package
-      path: staging
- 
+
+    strategy:
+      matrix:
+        java-version: [3.8, 3.9]
+
+    steps:
+    - uses: actions/checkout@v3
+    - name: Set up Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: ${{ matrix.python-version }}
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest
